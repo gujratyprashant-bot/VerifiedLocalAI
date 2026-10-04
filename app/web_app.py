@@ -482,12 +482,12 @@ def extract_address(text):
         )
 
         value = value.split("Location Tag:")[0]
-value = value.split("LOCATION TAG:")[0]
-value = value.split("Contact:")[0]
+        value = value.split("LOCATION TAG:")[0]
+        value = value.split("Contact:")[0]
 
-value = value.strip(" ,:-")
+        value = value.strip(" ,:-")
 
-    if len(value) >= 8:
+        if len(value) >= 8:
             return value
 
     return ""
