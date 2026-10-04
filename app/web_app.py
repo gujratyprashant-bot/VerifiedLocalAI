@@ -481,13 +481,11 @@ def extract_address(text):
             else match.group(0)
         )
 
-        value = re.split(
-            r"\b(?:Closed|Opens|Open|Contact|Reservation|Phone|Tel|Direction|Share|Reviews|₹|\+91)\b",
-            value,
-            flags=re.I
-        )[0]
+        value = value.split("Location Tag:")[0]
+value = value.split("LOCATION TAG:")[0]
+value = value.split("Contact:")[0]
 
-        value = value.strip(" ,:-")
+value = value.strip(" ,:-")
 
         if len(value) >= 8:
             return value
