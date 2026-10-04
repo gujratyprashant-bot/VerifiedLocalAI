@@ -464,18 +464,14 @@ def extract_phone(text):
 
 
 def extract_address(text):
-
     patterns = [
         r"\b(?:Address|address)\s*[:\-]\s*([^.\[\]\n]{8,160})",
-
-        r"\b\d{1,5}[A-Za-z]?\s*,\s*[^.\[\]\n]{3,120},\s*(?:MI Road|M\.I\. Road|M I Road|Ajmer Road|JLN Marg|Jawahar Nagar|Adarsh Nagar|Vaishali Nagar|Bapu Bazar|Goner Road|Tonk Road|Kings Road|Station Road|Malviya Nagar|Jamdoli)\s*,?\s*Jaipur\b",
-
-        r"\b(?:MI Road|M\.I\. Road|M I Road|Ajmer Road|JLN Marg|Jawahar Nagar|Adarsh Nagar|Vaishali Nagar|Bapu Bazar|Goner Road|Tonk Road|Kings Road|Station Road|Malviya Nagar|Jamdoli),?\s*Jaipur(?:,\s*Rajasthan)?(?:,\s*India)?\b"
+        r"\b\d{1,5}[A-Za-z]?\s*,\s*[^.\[\]\n]{3,120},\s*(?:MI Road|M\.I\. Road|M I Road|Johri Bazar|Ajmer Road|JLN Marg|Jawahar Nagar|Adarsh Nagar|Vaishali Nagar|Bapu Bazar|Goner Road|Tonk Road|Kings Road|Station Road|Malviya Nagar|Jamdoli)\s*,?\s*Jaipur\b",
+        r"\b(?:MI Road|M\.I\. Road|M I Road|Johri Bazar|Ajmer Road|JLN Marg|Jawahar Nagar|Adarsh Nagar|Vaishali Nagar|Bapu Bazar|Goner Road|Tonk Road|Kings Road|Station Road|Malviya Nagar|Jamdoli),?\s*Jaipur(?:,\s*Rajasthan)?(?:,\s*India)?\b"
     ]
 
     for pattern in patterns:
         match = re.search(pattern, text, re.I)
-
         if not match:
             continue
 
@@ -492,7 +488,7 @@ def extract_address(text):
         )[0]
 
         value = value.strip(" ,:-")
-        
+
         if len(value) >= 8:
             return value
 
