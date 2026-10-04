@@ -487,7 +487,7 @@ value = value.split("Contact:")[0]
 
 value = value.strip(" ,:-")
 
-        if len(value) >= 8:
+    if len(value) >= 8:
             return value
 
     return ""
