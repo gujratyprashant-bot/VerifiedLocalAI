@@ -196,7 +196,7 @@ HTML = """
                 flex-direction: column;
                 align-items: stretch;
             }
-        }
+        }		
     </style>
 </head>
 
@@ -462,7 +462,32 @@ def extract_phone(text):
 
     return ""
 
+def entity_is_ambiguous(query, results):
+    q = normalize(query)
 
+    generic_names = {
+        "rawat",
+        "apple",
+        "taj",
+        "royal",
+        "central",
+        "hotel"
+    }
+
+    words = set(q.split())
+
+    if len(words) <= 2 and words.intersection(generic_names):
+        names = set()
+
+        for item in results:
+            title = normalize(item.get("title", ""))
+            if title:
+                names.add(title.split(" - ")[0].strip())
+
+        if len(names) >= 3:
+            return True
+
+    return False
 def extract_address(text):
     patterns = [
         r"\b(?:Shop\s*)?(?:No\.?\s*)?(?:100[-–]101|98[-–]99|100|101),?\s*(?:Johri|Johari)\s+Bazar[^.\[\]\n]{0,150}(?:Jaipur|302003)",
