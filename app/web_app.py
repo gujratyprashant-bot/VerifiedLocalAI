@@ -465,7 +465,7 @@ def extract_phone(text):
 
 def extract_address(text):
     patterns = [
-        r"\b(?:100[-–]101|98[-–]99|100|101),?\s*(?:Johri|Johari)\s+Bazar[^.\[\]\n]{0,120}(?:Jaipur|302003)",
+        r"\b(?:Shop\s*)?(?:No\.?\s*)?(?:100[-–]101|98[-–]99|100|101),?\s*(?:Johri|Johari)\s+Bazar[^.\[\]\n]{0,150}(?:Jaipur|302003)",
         r"\b(?:Address|address)\s*[:\-]\s*([^\[\]\n]{8,200})",
         r"\b\d{1,5}[A-Za-z]?\s*,\s*[^.\[\]\n]{3,120},\s*(?:MI Road|M\.I\. Road|M I Road|Johri Bazar|Ajmer Road|JLN Marg|Jawahar Nagar|Adarsh Nagar|Vaishali Nagar|Bapu Bazar|Goner Road|Tonk Road|Kings Road|Station Road|Malviya Nagar|Jamdoli)\s*,?\s*Jaipur\b",
         r"\b(?:MI Road|M\.I\. Road|M I Road|Johri Bazar|Ajmer Road|JLN Marg|Jawahar Nagar|Adarsh Nagar|Vaishali Nagar|Bapu Bazar|Goner Road|Tonk Road|Kings Road|Station Road|Malviya Nagar|Jamdoli),?\s*Jaipur(?:,\s*Rajasthan)?(?:,\s*India)?\b"
@@ -485,7 +485,6 @@ def extract_address(text):
         value = value.split("Location Tag:")[0]
         value = value.split("LOCATION TAG:")[0]
         value = value.split("Contact:")[0]
-
         value = value.strip(" ,:-")
 
         if len(value) >= 8:
