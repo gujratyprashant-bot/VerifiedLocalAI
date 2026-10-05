@@ -732,7 +732,17 @@ def build_report(query):
         "results",
         []
     )
-
+    if entity_is_ambiguous(query, results):
+        return {
+            "status": "REVIEW REQUIRED",
+            "score": 40,
+            "address": "",
+            "phone": "",
+            "hours": "",
+            "conflicts": ["Ambiguous business name: multiple distinct entities found"],
+            "sources": results,
+            "assessment": "The business name is ambiguous. A more specific business name or address is required."
+        }
     if not results:
         return None
 
